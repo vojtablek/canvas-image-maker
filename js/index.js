@@ -331,6 +331,7 @@ const changeTextFont = async (e) => {
 inputTextFontCustom.addEventListener("change", changeTextFont);
 inputTextFontCustom.addEventListener("input", changeTextFont);
 
+/*
 //stáhnutí
 const downloadLinkReal = document.createElement("a");
 downloadLinkReal.setAttribute("download", "CanvasImageMaker.jpg");
@@ -343,6 +344,7 @@ linkSave.addEventListener("click", (e) => {
   downloadLinkReal.setAttribute("href", canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
   downloadLinkReal.click();
 });
+*/
 
 //init font
 initFont();
