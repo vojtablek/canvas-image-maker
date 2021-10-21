@@ -1,0 +1,53 @@
+/* Importing fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+Mono:wght@200;300;400;500;600;700;800;900&family=Pacifico&display=swap');
+
+:root{
+  --bg: #212121;
+  --txt: #CFCECE;
+  --clr1: #3b3266;
+  --clr2: #6556b3;
+  --clr3: #826ee6;
+  --input: #454545;
+
+  --fs: 25px;
+}
+
+body{
+  background-color: var(--bg);
+  color: var(--txt);
+  font-family: 'Inter';
+}
+
+a{
+  color: var(--clr2);
+}
+
+a:hover{
+  color: var(--clr3);
+}
+
+.licensetext{
+  width: auto;
+  max-width: 800px;
+  height: auto;
+  background-color: var(--input);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.licensesrc{
+  font-size: 12px;
+}
+
+.back{
+  width: 200px;
+  height: 70px;
+  background-color: var(--input);
+  border: none;
+  border-radius: 5px;
+  color: var(--txt);
+  font-family: 'Inter';
+  cursor: pointer;
+  float: right;
+  margin-right: 10px;
+}

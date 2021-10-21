@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image maker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="title">
+      Image maker
+    </h1>
+    <div class="maincontent">
+    <div class="picture-container">
+      <canvas id="picture" width="800" height="800"></canvas>
+    </div>
+    <div class="button-container">
+
+      <input id="customText" placeholder="Vložit vlastní text">
+
+      <div class="textprop">
+        <input type="color" name="color" class="color-picker" id="colorPicker">
+        <select name="fonts" id="fontselect" class="fontselect">
+          <option class="bebas" value="bebas">Bebas Neue</option>
+          <option class="noto" value="noto">Noto Sans Mono</option>
+          <option class="pacifico"  value="pacifico">Pacifico</option>
+          <option class="inter" value="inter">Inter</option>
+        </select>
+      </div>
+
+      <div class="textalign">
+        <button id="alignleft" class="alignleft alignbtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4Z" fill="currentColor" /><path d="M4 9C3.44772 9 3 9.44772 3 10C3 10.5523 3.44772 11 4 11H12C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9H4Z" fill="currentColor" /><path d="M3 14C3 13.4477 3.44772 13 4 13H20C20.5523 13 21 13.4477 21 14C21 14.5523 20.5523 15 20 15H4C3.44772 15 3 14.5523 3 14Z" fill="currentColor" /><path d="M4 17C3.44772 17 3 17.4477 3 18C3 18.5523 3.44772 19 4 19H12C12.5523 19 13 18.5523 13 18C13 17.4477 12.5523 17 12 17H4Z" fill="currentColor" /></svg>
+        </button>
+        <button id="aligncenter" class="aligncenter alignbtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4Z" fill="currentColor" /><path d="M4 13C3.44772 13 3 13.4477 3 14C3 14.5523 3.44772 15 4 15H20C20.5523 15 21 14.5523 21 14C21 13.4477 20.5523 13 20 13H4Z" fill="currentColor" /><path d="M6 10C6 9.44772 6.44772 9 7 9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10Z" fill="currentColor" /><path d="M7 17C6.44772 17 6 17.4477 6 18C6 18.5523 6.44772 19 7 19H17C17.5523 19 18 18.5523 18 18C18 17.4477 17.5523 17 17 17H7Z" fill="currentColor" /></svg>
+        </button>
+        <button id="alignright" class="alignright alignbtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5C20.5523 5 21 5.44772 21 6C21 6.55228 20.5523 7 20 7H4C3.44772 7 3 6.55228 3 6C3 5.44772 3.44772 5 4 5H20Z" fill="currentColor" /><path d="M20 9C20.5523 9 21 9.44772 21 10C21 10.5523 20.5523 11 20 11H12C11.4477 11 11 10.5523 11 10C11 9.44772 11.4477 9 12 9H20Z" fill="currentColor" /><path d="M21 14C21 13.4477 20.5523 13 20 13H4C3.44772 13 3 13.4477 3 14C3 14.5523 3.44772 15 4 15H20C20.5523 15 21 14.5523 21 14Z" fill="currentColor" /><path d="M20 17C20.5523 17 21 17.4477 21 18C21 18.5523 20.5523 19 20 19H12C11.4477 19 11 18.5523 11 18C11 17.4477 11.4477 17 12 17H20Z" fill="currentColor" /></svg>
+        </button>
+        <div class="pipe"></div>
+        <button class="posbtn postop">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.0352 7.98797L13.0374 13.988L17.0374 13.9865L17.0352 7.98653L13.0352 7.98797Z" fill="currentColor" fill-opacity="0.5" /><path fill-rule="evenodd" clip-rule="evenodd" d="M17.9996 4.01189L5.99963 4.01837L6.00038 6.01837L18.0004 6.01189L17.9996 4.01189Z" fill="currentColor" /><path fill-rule="evenodd" clip-rule="evenodd" d="M11.0374 19.9864L11.0321 7.98637L7.03207 7.98813L7.03736 19.9881L11.0374 19.9864Z" fill="currentColor" /></svg>
+        </button>
+        <button class="posbtn poscenter">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 13H15V17H9V13Z" fill="currentColor" fill-opacity="0.5" /><path d="M6 7H18V11H6V7Z" fill="currentColor" /></svg>
+        </button>
+        <button class="posbtn posbottom">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 10H17V16H13V10Z" fill="currentColor" fill-opacity="0.5" /><path d="M11 4H7V16H11V4Z" fill="currentColor" /><path d="M18 18H6V20H18V18Z" fill="currentColor" /></svg>
+        </button>
+      </div>
+
+      <div class="darken">
+        <input type="range" id="darkenrange" class="darkenrange" step="1" value="0" max="100" min="0">
+      </div>
+
+      <div class="imgsearch">
+        <input id="typeImg" placeholder="Vyhledej obrázek">
+        <button class="searchimgbtn" id="searchimgbtn">
+          <svg id="magnifiersvg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.319 14.4326C20.7628 11.2941 20.542 6.75347 17.6569 3.86829C14.5327 0.744098 9.46734 0.744098 6.34315 3.86829C3.21895 6.99249 3.21895 12.0578 6.34315 15.182C9.22833 18.0672 13.769 18.2879 16.9075 15.8442C16.921 15.8595 16.9351 15.8745 16.9497 15.8891L21.1924 20.1317C21.5829 20.5223 22.2161 20.5223 22.6066 20.1317C22.9971 19.7412 22.9971 19.1081 22.6066 18.7175L18.364 14.4749C18.3493 14.4603 18.3343 14.4462 18.319 14.4326ZM16.2426 5.28251C18.5858 7.62565 18.5858 11.4246 16.2426 13.7678C13.8995 16.1109 10.1005 16.1109 7.75736 13.7678C5.41421 11.4246 5.41421 7.62565 7.75736 5.28251C10.1005 2.93936 13.8995 2.93936 16.2426 5.28251Z" fill="currentColor" />
+          </svg>
+          <svg id="repeatsvg" display="none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.56079 10.6418L6.35394 3.94971L8.25402 5.84979C11.7312 3.6588 16.3814 4.07764 19.41 7.1063L17.9958 8.52052C15.7536 6.27827 12.3686 5.87519 9.71551 7.31128L11.2529 8.84869L4.56079 10.6418Z" fill="currentColor" /><path d="M19.4392 13.3581L17.646 20.0502L15.7459 18.1501C12.2688 20.3411 7.61857 19.9223 4.58991 16.8936L6.00413 15.4794C8.24638 17.7217 11.6313 18.1247 14.2844 16.6887L12.747 15.1512L19.4392 13.3581Z" fill="currentColor" /></svg>
+        </button>
+        <button id="randomimg" class="randomimg">
+          <svg id="cubeSvg" width="24" height="24" version="1.1" viewBox="0 0 6.35 6.35" xmlns="http://www.w3.org/2000/svg">
+           <g stroke-linecap="round" stroke-linejoin="round" fill="currentColor">
+            <path transform="scale(.26458)" d="m4.3496 0c-2.4099 0-4.3496 1.9397-4.3496 4.3496v15.301c0 2.4099 1.9397 4.3496 4.3496 4.3496h15.301c2.4099 0 4.3496-1.9397 4.3496-4.3496v-15.301c0-2.4099-1.9397-4.3496-4.3496-4.3496zm0.025391 2.1758h15.25c1.2188 0 2.1992 0.98042 2.1992 2.1992v15.25c0 1.2188-0.98042 2.1992-2.1992 2.1992h-15.25c-1.2188 0-2.1992-0.98042-2.1992-2.1992v-15.25c0-1.2188 0.98042-2.1992 2.1992-2.1992z" stroke-width="10"/>
+            <g transform="translate(.11245 .11245)" stroke-width="2.6458">
+             <circle cx="3.0626" cy="3.0626" r=".46302"/>
+             <circle cx="1.7628" cy="1.7628" r=".46302"/>
+             <circle cx="4.3623" cy="1.7628" r=".46302"/>
+             <circle cx="1.7628" cy="4.3623" r=".46302"/>
+             <circle cx="4.3622" cy="4.3623" r=".46302"/>
+            </g>
+           </g>
+          </svg>
+        </button>
+      </div>
+
+      <form action="#" style="display: none;">
+        <input name="custom-image" id="customImage" type="file" accept="image/*" />
+      </form>
+      <button id="customImageBtn">
+      Vložit vlastní obrázek
+      </button>
+
+      <a class="save" id="save">Uložit</a>
+    </div>
+  </div>
+  <div class="bottom">
+    <a href="/c/credits.html" class="credits">Credits</a>
+  </div>
+  <!--hr class="divider">
+  <div class="contact">
+    <a href="https://twitter.com/donkeydushan" target="_blank" rel="noopener noreferrer">
+      @donkeydushan
+    </a>
+    •
+    <a href="https://github.com/DonkeyDushan/piratilol" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+  <div class="bottom-text">
+    Můžete nám přispět na pivo a pomoci tak ke vzniku dalších kvalitních nápadů ❤ <br>
+    1028677544/6100
+  </div-->
+  <script src="js/index.js" type="module"></script>
+</body>
+
+</html>
