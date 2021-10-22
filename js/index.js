@@ -15,6 +15,8 @@ var lastSearch = " ";
 
 let textAlign = "center"
 
+let darkenLevel = '0'
+
 //prázdný obrázek
 let currentImage = new Image();
 //prázdný text
@@ -104,6 +106,9 @@ const repaintImage = async () => {
   ctx.setTransform(scale, 0, 0, scale, 0, 0);
   ctx.drawImage(currentImage, 0, 0);
   ctx.setTransform(); // reset so that everything else is normal size
+
+  ctx.fillStyle = 'rgba(0,0,0,0.' + darkenLevel + ')';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const lines = splitText(currentText, 20).reverse(); //zalamování a ??otočení??
   const fontSize = lines.length < 5 ? 60 : 40;
@@ -330,6 +335,25 @@ const changeTextFont = async (e) => {
 //on click / input custom img src
 inputTextFontCustom.addEventListener("change", changeTextFont);
 inputTextFontCustom.addEventListener("input", changeTextFont);
+
+const darkenLevelRange = document.getElementById("darkenrange");
+const darkenImage = async (e) => {
+  //nastav desetinné číslo tmavosti
+  if (darkenLevelRange.value == 5) {
+    darkenLevel = 0 + darkenLevelRange.value;
+  } else {
+    darkenLevel = darkenLevelRange.value;
+  }
+
+  console.log(darkenLevel);
+
+  //přebarvení obrázku
+  repaintImage();
+};
+
+//on click / input custom img src
+darkenLevelRange.addEventListener("input", darkenImage);
+darkenLevelRange.addEventListener("change", darkenImage);
 
 /*
 //stáhnutí
