@@ -417,7 +417,7 @@ linkSave.addEventListener("click", (e) => {
 });
 */
 
-//init font
+//init font 
 initFont();
 
 //reroll obrázek
