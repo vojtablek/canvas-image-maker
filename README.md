@@ -2,7 +2,7 @@
 **Simply create square images with text**
 *Note: Site is un-done. Work in progress.*
 ## Website
-[vojtablek.github.io/canvas-image-maker/](https://github.com/vojtablek/canvas-image-maker)
+[vojtablek.github.io/canvas-image-maker/](https://vojtablek.github.io/canvas-image-maker/)
 
 ## Used things:
 ### Host
