@@ -3,7 +3,7 @@
 export const splitText = (text, maxLineLength) => {
   //blank
 const result = [];
-//loop když je délka textu větší než  maxLineLength
+//loop když je délka textu větFší než  maxLineLength
 while (text.length > maxLineLength) {
   //oddělí 1char a 20char, pokud je 20. mezera odebere ji
   let pos = text.substring(0, maxLineLength).lastIndexOf(" ");
@@ -14,7 +14,7 @@ while (text.length > maxLineLength) {
   result.push(text.substring(0, pos));
   //začátek nového řádku
   let i = text.indexOf(" ", pos) + 1;
-  //pokud i < než pos / i< pos + maxLineLength tak se rovná
+  //pokud i < než pos / i< pos + maxFLineLength tak se rovná
   if (i < pos || i > pos + maxLineLength) i = pos;
   //oddělit po řádkách
   text = text.substring(i);

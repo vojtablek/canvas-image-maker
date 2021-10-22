@@ -111,12 +111,20 @@ const repaintImage = async () => {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const lines = splitText(currentText, 20).reverse(); //zalamování a ??otočení??
+  const firstArrNum = lines.length > 1 ? lines.length - 1 : 0;
   const fontSize = lines.length < 5 ? 60 : 40;
+  let x = canvas.width / 2;
+
   ctx.font = `${fontSize}px ${font.family}` //font nastavení
    lines.forEach((line, index) => {
-    let textWidth = ctx.measureText(line[0]).width;
-    const x = canvas.width / 2;
-    const y = canvas.height / 2;
+    let textWidth = ctx.measureText(lines[firstArrNum]).width;
+    if (textAlign == "left") {
+      x = 100;
+    } else if (textAlign == "right") {
+      x = canvas.width - 100;
+    };
+    //max center
+    const y = (canvas.height / 2) + (fontSize * lines.length / 2);
     const padding = 0;
     const lineHeight = padding + fontSize; //umístění
     /*
@@ -124,7 +132,7 @@ const repaintImage = async () => {
     ctx
       .fillRect(x, y - (index * lineHeight), ctx.measureText(line).width + 2 * padding, lineHeight); //pozadí
     */
-    ctx.textBaseline = "top";
+    ctx.textBaseline = "center";
     ctx.fillStyle = textColor;
     ctx.textAlign = textAlign;
     // draw the text centered at [centerX,centerY]
@@ -273,21 +281,18 @@ const alignRight = document.getElementById("alignright");
 
 //update icon to magnifier
 const setAlignRight = async => {
-  console.log("working");
   textAlign = "right";
   repaintImage();
 };
 
 //update icon to magnifier
 const setAlignLeft = async => {
-  console.log("working");
   textAlign = "left";
   repaintImage();
 };
 
 //update icon to magnifier
 const setAlignCenter = async => {
-  console.log("working");
   textAlign = "center";
   repaintImage();
 };
