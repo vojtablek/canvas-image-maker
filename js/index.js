@@ -13,9 +13,11 @@ let textColor = "black"
 
 var lastSearch = " ";
 
-let textAlign = "center"
+let textAlign = "center";
 
-let darkenLevel = '0'
+let textPosition = "center";
+
+let darkenLevel = '0';
 
 //prázdný obrázek
 let currentImage = new Image();
@@ -107,6 +109,7 @@ const repaintImage = async () => {
   ctx.drawImage(currentImage, 0, 0);
   ctx.setTransform(); // reset so that everything else is normal size
 
+  //darken img
   ctx.fillStyle = 'rgba(0,0,0,0.' + darkenLevel + ')';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -114,17 +117,29 @@ const repaintImage = async () => {
   const firstArrNum = lines.length > 1 ? lines.length - 1 : 0;
   const fontSize = lines.length < 5 ? 60 : 40;
   let x = canvas.width / 2;
+  //max center
+  let y = (canvas.height / 2) + (fontSize * lines.length / 2);
 
   ctx.font = `${fontSize}px ${font.family}` //font nastavení
    lines.forEach((line, index) => {
     let textWidth = ctx.measureText(lines[firstArrNum]).width;
+    //aligning
     if (textAlign == "left") {
       x = 100;
     } else if (textAlign == "right") {
       x = canvas.width - 100;
     };
-    //max center
-    const y = (canvas.height / 2) + (fontSize * lines.length / 2);
+
+    //y position
+    if (textPosition == "top") {
+      if (lines.length == 1) {
+        y = 100;
+      } else {
+        y = 100 + fontSize * (lines.length - 1);
+      }
+    } else if (textPosition == "bottom") {
+      y = canvas.width - 100;
+    };
     const padding = 0;
     const lineHeight = padding + fontSize; //umístění
     /*
@@ -302,6 +317,33 @@ alignLeft.addEventListener("click", setAlignRight);
 alignCenter.addEventListener("click", setAlignCenter);
 alignRight.addEventListener("click", setAlignLeft);
 
+//align buttons
+const positionTopButton = document.getElementById("postop");
+const positionCenterButton = document.getElementById("poscenter");
+const positionBottomButton = document.getElementById("posbottom");
+
+//update icon to magnifier
+const setPositionTop = async => {
+  textPosition = "top";
+  repaintImage();
+};
+
+//update icon to magnifier
+const setPositionCenter = async => {
+  textPosition = "center";
+  repaintImage();
+};
+
+//update icon to magnifier
+const setPositionBottom = async => {
+  textPosition = "bottom";
+  repaintImage();
+};
+
+//on click / input change align
+positionTopButton.addEventListener("click", setPositionTop);
+positionCenterButton.addEventListener("click", setPositionCenter);
+positionBottomButton.addEventListener("click", setPositionBottom);
 
 //custom text barva ASYNCHRONÍ
 const inputTextColorCustom = document.getElementById("colorPicker");
