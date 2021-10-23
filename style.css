@@ -81,6 +81,11 @@ button {
     flex-shrink: 0;
     width: 100%;
     cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 button:hover:active {
@@ -243,7 +248,12 @@ svg{
 }
 
 .icon__darken{
-  background-color: var(--input)
+  background-color: var(--input);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #magnifiersvg, #repeatsvg{
