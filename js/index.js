@@ -32,10 +32,20 @@ const noto = new FontFace("Noto Sans Mono", "url(/font/noto-sans-mono/NotoSansMo
 
 const pacifico = new FontFace("Pacifico", "url(/font/pacifico/Pacifico-Regular.ttf)");
 
+//TODO: fix
+const callApi = async (generators) => {
+  try {
+    let data = await fetch(generators);
+    return data;
+  } catch (error) {
+    errorApiWarning();
+  }
+};
+
 //obnovit obrázek ASYNCHRONÍ
 const rerollImage = async () => {
   //dostaň url
-  let imageData = await fetch(generators);
+  let imageData = await callApi(generators);
   //new promise
   return new Promise((resolve) => {
     //prázdná obrázek
@@ -211,11 +221,15 @@ buttonCustomImg.addEventListener("click", () => {
 const inputCustom = document.getElementById("customText");
 const replaceWithCustomText = async (e) => {
   if (e.type === "input" || inputCustom.value) {
+    let specialLangChars = ["ß", "đ", "Đ", "ł", "Ł", "ů", "ú", "ě", "š", "č", "ř", "ž", "ý", "á", "í", "é"];
+    let specialChars = ["\\;", "°", "+", "=", "%", "´", "ˇ", ")", "(", "/", "¨", "\'", "!", "\"", "§", "-", "_", ":", ".", ",", "?", "<", ">", "*", "¤", "$", "×", "÷", "¸", "¨", "˝", "˙", "`", "˛", "^", "~", "|", "\\", "€", "\[", "\]", "#", "&", "@", "{", "}"];
+    specialChars = specialChars.join('\\');
+    let regex = '[^a-zA-Z0-9' + specialChars + specialLangChars + ']'
+    regex = '/' + regex + '/gm'
     //remove emojis
-    let cleanText = inputCustom.value.replace(/[^a-zA-Z0-9 ]/gm, '');
+    let cleanText = inputCustom.value.replace(regex, '');
     //text je curtext
     currentText = cleanText;
-    console.log(currentText);
     //přebarvení obrázku
     repaintImage();
   }
@@ -235,7 +249,6 @@ const replaceWithCustomImgSrc = async (e) => {
     //animate again svg
     if (lastSearch == inputImgCustom.value) {
       document.getElementById("repeatsvg").setAttribute('class', 'againrotate');
-      console.log("done");
       setTimeout(function(){
         document.getElementById("repeatsvg").setAttribute('class', ' ');
       }, 600);
@@ -356,7 +369,6 @@ const repaintColorText = async (e) => {
   textColor = inputTextColorCustom.value;
   //přebarvení obrázku
   repaintImage();
-  console.log(textColor);
 };
 
 inputTextColorCustom.addEventListener("change", repaintColorText);
@@ -396,7 +408,6 @@ const darkenImage = async (e) => {
     darkenLevel = darkenLevelRange.value;
   }
 
-  console.log(darkenLevel);
 
   //přebarvení obrázku
   repaintImage();
@@ -405,6 +416,22 @@ const darkenImage = async (e) => {
 //on click / input custom img src
 darkenLevelRange.addEventListener("input", darkenImage);
 darkenLevelRange.addEventListener("change", darkenImage);
+
+const errorApiWarning = async () => {
+  let modal = document.querySelectorAll(".modal");
+  let body = document.body;
+  let bottom = document.getElementById("bottom");
+  //scroll to top
+  window.scrollTo(0, 0);
+  //show modal
+  modal.forEach(modal => {
+    modal.style.visibility = "visible";
+  });
+  //disable overflow
+  body.style.overflow = "hidden"
+  //bottom credits to bottom
+  bottom.classList.add("bottom__modal");
+}
 
 /*
 //stáhnutí
