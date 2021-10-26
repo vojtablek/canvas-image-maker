@@ -211,8 +211,11 @@ buttonCustomImg.addEventListener("click", () => {
 const inputCustom = document.getElementById("customText");
 const replaceWithCustomText = async (e) => {
   if (e.type === "input" || inputCustom.value) {
+    //remove emojis
+    let cleanText = inputCustom.value.replace(/[^a-zA-Z0-9 ]/gm, '');
     //text je curtext
-    currentText = inputCustom.value;
+    currentText = cleanText;
+    console.log(currentText);
     //přebarvení obrázku
     repaintImage();
   }
@@ -221,6 +224,7 @@ const replaceWithCustomText = async (e) => {
 //on click / input custom text
 inputCustom.addEventListener("click", replaceWithCustomText);
 inputCustom.addEventListener("input", replaceWithCustomText);
+inputCustom.addEventListener("paste", replaceWithCustomText);
 
 //custom img src ASYNCHRONÍ
 const inputImgCustom = document.getElementById("typeImg");
@@ -417,7 +421,7 @@ linkSave.addEventListener("click", (e) => {
 });
 */
 
-//init font 
+//init font
 initFont();
 
 //reroll obrázek

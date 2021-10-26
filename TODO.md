@@ -1,1 +1,4 @@
-ALIGN TOO BIG WHILE FILLED
+Todo
+
+- API error notice
+- No emojis notice
